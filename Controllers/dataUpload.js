@@ -17,12 +17,10 @@ const dataUpload=async(req,res)=>{
           }
 
           await existingTrade.save();
-          console.log(`Updated trade with symbol ${record.symbol}`);
+         
         } else {
           const newTrade = new Trade(record);
           await newTrade.save();
-          console.log(`Added new trade with symbol ${record.symbol}`);
-          console.log(newTrade)
         }
       } 
 

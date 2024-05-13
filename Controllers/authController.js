@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken");
-const { user, ownerEmailverification } = require("../userModel/users");
 const { register_mail, register_greet } = require("../helpers/mail/mail");
 const { idToToken, userToToken, verifyId } = require("../helpers/token/token");
+const { user, ownerEmailverification } = require("../Model/user_auth");
 require("dotenv").config();
 
 // login function
@@ -255,7 +255,7 @@ async function user_regiser(req, res) {
 
       // email sent for verification
       const result = await register_mail(email, userName, otp);
-      console.log("result", result);
+   
       if (result) {
         let newUser = new user({
           userName,
@@ -265,7 +265,7 @@ async function user_regiser(req, res) {
         });
         // creating new user
         let userData = await newUser.save();
-        console.log(userData);
+    
         let newEmailVerify = await ownerEmailverification({
           owner: userData._id,
           otp: hashedOtp,
