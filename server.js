@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(path.resolve(__dirname,"public")))
 
 app.use(cors({
-    origin: 'https://new-stock-reccomendition.vercel.app',
+    origin:"https://new-stock-reccomendition.vercel.app/",
     credentials: true
   }));
 app.use(express.json())
