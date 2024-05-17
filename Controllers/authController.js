@@ -34,7 +34,8 @@ async function user_login(req, res) {
 
           // sending token in cookies
           console.log(isUser)
-          res.cookie(`jwt`,token,{httpOnly:false})
+          res.cookie(`access-token`,token,{httpOnly: true,
+            expires: new Date(Date.now() + 3600000)})
 
           res.json({
             status: "success",
