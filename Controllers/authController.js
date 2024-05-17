@@ -46,7 +46,7 @@ async function user_login(req, res) {
             secure: true,
           })
           
-          res.header({"Access-Control-Allow-Origin":"https://new-stock-reccomendition.vercel.app"})
+          res.header("Access-Control-Allow-Origin" , "https://new-stock-reccomendition.vercel.app")
           res.json({
             status: "success",
             user: {
