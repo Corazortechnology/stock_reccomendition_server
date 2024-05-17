@@ -37,6 +37,7 @@ async function user_login(req, res) {
           res.cookie(`access-token`,token,{httpOnly: true,
             expires: new Date(Date.now() + 3600000),
             sameSite: 'None',
+            secure: true,
           })
 
           res.json({
