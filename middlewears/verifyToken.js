@@ -1,6 +1,6 @@
 
 async function verify(req,res,next){
-    const cookie =req.cookies;
+    const cookie =req.headers.cookies;
     console.log(cookie)
 }
 
