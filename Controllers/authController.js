@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken");
 const { register_mail, register_greet } = require("../helpers/mail/mail");
-const { idToToken, userToToken, verifyId } = require("../helpers/token/token");
+const { idToToken, userToToken, verifyId, refreshToken } = require("../helpers/token/token");
 const { user, ownerEmailverification } = require("../Model/user_auth");
 require("dotenv").config();
 
@@ -22,7 +22,7 @@ async function user_login(req, res) {
       },
     });
   } else {
-    const isUser = await user.findOne({ email });
+    const isUser = await user.findOne({ email }).select("-refresh_token");
 
     if (isUser) {
       const check_password = await bcrypt.compare(password, isUser.password);
@@ -30,12 +30,18 @@ async function user_login(req, res) {
       if (isUser.email == email) {
         if (check_password) {
           // create token of user credentials
-          const token = userToToken(isUser);
+          const access_token = userToToken(isUser._id);
+          const refresh_Token = refreshToken(isUser._id)
 
           // sending token in cookies
-          console.log(isUser)
-          res.cookie(`access-token`,token,{httpOnly: true,
-            expires: new Date(Date.now() + 3600000),
+          res.cookie(`access-token`,access_token,{httpOnly: true,
+            expires: new Date(Date.now() + 3600000*24),
+            sameSite: 'None',
+            secure: true,
+          })
+
+          res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
+            expires: new Date(Date.now() + 3600000*24),
             sameSite: 'None',
             secure: true,
           })
@@ -43,7 +49,7 @@ async function user_login(req, res) {
           res.json({
             status: "success",
             user: {
-              token: token,
+               access_token,refresh_Token,isUser
             },
             message: "Login successfull.",
           });
