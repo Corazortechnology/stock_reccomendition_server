@@ -6,6 +6,7 @@ const auth = require("./routes/auth/authentication")
 const uploads = require("./routes/admin/uploads/dataUploads.js");
 const path=require("path")
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(path.resolve(__dirname,"public")))
 app.use(cors());
 app.use(express.json())
+app.use(cookieParser())
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/admin", uploads);

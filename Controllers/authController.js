@@ -22,18 +22,19 @@ async function user_login(req, res) {
       },
     });
   } else {
-    const isUser = await user.find({ email });
+    const isUser = await user.findOne({ email });
 
-    if (isUser.length) {
-      const check_password = await bcrypt.compare(password, isUser[0].password);
+    if (isUser) {
+      const check_password = await bcrypt.compare(password, isUser.password);
 
-      if (isUser[0].email == email) {
+      if (isUser.email == email) {
         if (check_password) {
           // create token of user credentials
-          const token = userToToken(isUser[0]);
+          const token = userToToken(isUser);
 
           // sending token in cookies
-          res.cookie("token", token, { httpOnly: true, secure: false });
+          console.log(isUser)
+          res.cookie(`jwt`,token,{httpOnly:false})
 
           res.json({
             status: "success",
