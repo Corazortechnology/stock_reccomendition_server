@@ -35,13 +35,13 @@ async function user_login(req, res) {
 
           // sending token in cookies
           res.cookie(`access-token`,access_token,{httpOnly: true,
-            expires: new Date(Date.now() + 3600000*24),
+            expires: new Date(Date.now() + 15 * 60 * 1000),
             sameSite: 'None',
             secure: true,
           })
 
           res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
-            expires: new Date(Date.now() + 3600000*24),
+            expires:  new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
             sameSite: 'None',
             secure: true,
           })

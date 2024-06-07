@@ -13,17 +13,16 @@ const verifyId=(token)=>{
 }
 
 const userToToken=(id)=>{
-    const token = jwt.sign({ user: id }, process.env.SECTRT_KEY, { expiresIn: '15m' });
+    const token = jwt.sign({ user: id }, process.env.SECTRT_KEY, { expiresIn: '15' });
     return token;
 }
-
 
 const refreshToken=(id)=>{
-    const token = jwt.sign({ user: id }, process.env.REFRESH_KEY, { expiresIn: '7d' });
+    const token = jwt.sign({ user: id }, process.env.REFRESH_KEY, { expiresIn: '60d' });
     return token;
 }
 
-const verifyUser=(token)=>{
+const verifyUser= (token)=>{
     const tokenData = jwt.verify(token, process.env.SECTRT_KEY);
     return tokenData;
 }

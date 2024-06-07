@@ -1,11 +1,11 @@
 const express = require("express");
 const { user_regiser, user_login, email_varification } = require("../../Controllers/authController");
+const authenticateToken = require("../../middlewears/verifyAuth");
 const router = express.Router();
-const {verify} =require("../../middlewears/verifyToken")
 
 
 //registration
-router.post("/register",verify, user_regiser);
+router.post("/register", user_regiser);
 
 //login
 router.post("/login",user_login); 

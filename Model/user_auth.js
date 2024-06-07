@@ -25,12 +25,20 @@ const userScheme = new mongoose.Schema({
     type: String,
     default: "user",
   },
-
+  subscription:{
+    plan:{
+    type: String,
+    default: "Free",
+  },
+  expires:{
+    type:Number,
+    default:Date.now()+10*(365.25 * 24 * 60 * 60 * 1000)
+  }
+},
   is_varified: {
     type: Boolean,
     default: false,
   },
-
   date_created: String,
 });
 
