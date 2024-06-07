@@ -124,7 +124,7 @@ async function paymentVerificationController(req, res) {
 
             await isUser.save();
 
-            res.redirect(`http://localhost:5173/paymentSuccess?refrence=${razorpay_payment_id}&amount=${price}&plan=${selectedPlan}&type=${duration}&expires=${subscriptionEndDate}`)
+            res.redirect(`https://www.signalsandweights.com/paymentSuccess?refrence=${razorpay_payment_id}&amount=${price}&plan=${selectedPlan}&type=${duration}&expires=${subscriptionEndDate}`)
 
         }
     } catch (error) {
