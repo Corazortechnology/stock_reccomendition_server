@@ -38,6 +38,7 @@ async function user_login(req, res) {
             expires: new Date(Date.now() + 15 * 60 * 1000),
             sameSite: 'None',
             secure: true,
+            domain:"https://www.signalsandweights.com"
           })
 
           res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
