@@ -29,6 +29,7 @@ const authenticateToken = async (req, res, next) => {
             res.cookie('access-token', newAccessToken, {
                 httpOnly: true,
                 expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+                sameSite: 'None',
                 secure: true,
             });
 
@@ -62,6 +63,7 @@ const authenticateToken = async (req, res, next) => {
                     res.cookie('access-token', newAccessToken, {
                         httpOnly: true,
                         expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+                        sameSite: 'None',
                         secure: true,
                     });
 
