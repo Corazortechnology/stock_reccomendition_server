@@ -38,14 +38,14 @@ async function user_login(req, res) {
             expires: new Date(Date.now() + 15 * 60 * 1000),
             sameSite: 'None',
             secure: true,
-            domain:".signalsandweights.com"
+            domain:"https://www.signalsandweights.com"
           })
 
           res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
             expires:  new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
             sameSite: 'None',
             secure: true,
-            domain:".signalsandweights.com"
+            domain:"https://www.signalsandweights.com"
           })
           
           res.json({
