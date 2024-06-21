@@ -30,7 +30,7 @@ const authenticateToken = async (req, res, next) => {
                 httpOnly: true,
                 expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
                 secure: true,
-                domain:"https://www.signalsandweights.com"
+                domain:".signalsandweights.com"
             });
 
             req.user = User._id;
@@ -64,7 +64,7 @@ const authenticateToken = async (req, res, next) => {
                         httpOnly: true,
                         expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
                         secure: true,
-                        domain:"https://www.signalsandweights.com"
+                        domain:".signalsandweights.com"
                     });
 
                     req.user = User._id;
