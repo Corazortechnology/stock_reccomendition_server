@@ -19,8 +19,10 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(path.resolve(__dirname,"public")))
 
 app.use(cors({
-    origin:"https://www.signalsandweights.com",
-    credentials:true
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 }));
 app.use(express.json())
 app.use(cookieParser())
