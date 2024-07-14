@@ -34,17 +34,17 @@ async function user_login(req, res) {
           const refresh_Token = refreshToken(isUser._id)
 
           // sending token in cookies
-          res.cookie(`access-token`,access_token,{httpOnly: true,
-            expires: new Date(Date.now() + 15 * 60 * 1000),
-            sameSite: 'None',
-            secure: true,
-          })
+          // res.cookie(`access-token`,access_token,{httpOnly: true,
+          //   expires: new Date(Date.now() + 15 * 60 * 1000),
+          //   sameSite: 'None',
+          //   secure: true,
+          // })
 
-          res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
-            expires:  new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-            sameSite: 'None',
-            secure: true,
-          })
+          // res.cookie(`refresh-token`,refresh_Token,{httpOnly: true,
+          //   expires:  new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+          //   sameSite: 'None',
+          //   secure: true,
+          // })
           
           res.json({
             status: "success",

@@ -8,6 +8,6 @@ const logoutUser = require("../Controllers/logoutUser");
 router.get('/getUser', authenticateToken, getUser)
 
 // logout
-router.get("/user/logout",authenticateToken, logoutUser)
+router.get("/user/logout",logoutUser)
 
 module.exports = router;

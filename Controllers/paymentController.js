@@ -20,19 +20,8 @@ const instance = new Razorpay({
 
 async function paymentController(req, res) {
     const { amount, period, plan } = req.body;
-
-    // getting user id from refresh token
-    const refreshToken = req.cookies['refresh-token'];
-    if (!refreshToken) {
-        return res.status(401).json({
-            success: false,
-            message: "unauthorized"
-        });
-    }
-    const decodedRefreshToken =jwt.verify(refreshToken, process.env.REFRESH_KEY);
-    console.log(refreshToken,"  ",decodedRefreshToken)
-    const userId = decodedRefreshToken.user; 
-
+    const userId = req.user;
+   console.log(userId)
     duration = period;
     price = amount;
     selectedPlan = plan;
